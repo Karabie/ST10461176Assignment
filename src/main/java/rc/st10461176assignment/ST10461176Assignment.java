@@ -10,11 +10,41 @@ import javax.swing.*;
  * @author kmmak
  */
 public class ST10461176Assignment {
-
+ static Student studentObj = new Student();
     public static void main(String[] args) {
-        System.out.println("Hello World!");
+        boolean menuLoop = true;
         mainMenu();
-        menuItem();
+        while(menuLoop){
+            int choice = menuItem(); 
+            switch (choice){
+                case 1 -> captureStudent();
+                case 2 -> {
+                    int search = Integer.parseInt(JOptionPane.showInputDialog("Enter ID to search"));
+                    studentObj.SearchStudent(search);
+                }
+                case 3 -> {
+                    int search = Integer.parseInt(JOptionPane.showInputDialog("Enter ID to Delete"));
+                    studentObj.DeleteStudent(search);
+                } case 4 ->{
+                    studentObj.StudentReport();
+                }      
+                case 5 -> {
+                    studentObj.Exit();
+                    menuLoop = false;
+                }
+                default -> {
+                    menuLoop = true;
+                }
+                    
+            }
+                
+            
+        }
+        
+       
+        
+        
+        
     }
     public static int mainMenu(){
         int item = 0;
@@ -44,9 +74,9 @@ public class ST10461176Assignment {
    return item;
     }
     
-    public static int captureStudent(int studentID, String studentName, int studentAge, String studentEmail, String studentCourse){
+    public static void  captureStudent(){
         int item = 0;
-        try{
+        /*try{
         JOptionPane.showInputDialog(        "CAPTURE A NEW STUDENT" + '\n'
                                            +"***********************************" + '\n'
                                            +"Enter the student id: " + studentID + '\n'
@@ -58,11 +88,33 @@ public class ST10461176Assignment {
         }
         catch(Exception ex){
             JOptionPane.showMessageDialog(null, ex);
-        }
-        return item;
+        }*/
+            boolean ageValid = false;
+            int id = Integer.parseInt(JOptionPane.showInputDialog("Enter Student ID"));
+            String name = JOptionPane.showInputDialog("Enter Student Name");
+            int age = 0;
+            while(ageValid == false){
+                
+                try{
+                 age = Integer.parseInt(JOptionPane.showInputDialog("Enter Student age greater than 16 years old"));
+                if(age>=16){
+                    ageValid = true;
+                }else{
+                    System.out.println("You have entered incorrect student age!!! : " + age);
+                }
+                }catch(Exception e){
+                    System.out.println("You have entered an incorrect student age!!! : " + e);
+                }
+            }
+            String email = JOptionPane.showInputDialog("Enter student email");
+            String course = JOptionPane.showInputDialog("Enter student course");
+            
+            studentObj.SaveStudent(id, name, age, email, course);
+            
+        
         }
     
-    public static int invalidAge(String Exception){
+    /*public static int invalidAge(String Exception){
         int age = 0;
         try{
             age = Integer.parseInt(JOptionPane.showInputDialog("Enter the student age: " + Exception + '\n'
@@ -72,7 +124,8 @@ public class ST10461176Assignment {
             JOptionPane.showMessageDialog(null, ex);
         }
         return age;
-    } 
+    } */
+    
     
     
 }
