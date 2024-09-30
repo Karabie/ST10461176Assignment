@@ -11,6 +11,7 @@ import javax.swing.*;
  */
 public class ST10461176Assignment {
  static Student studentObj = new Student();
+ static Member memberObj = new Member();
     public static void main(String[] args) {
         boolean menuLoop = true;
         mainMenu();
@@ -41,8 +42,20 @@ public class ST10461176Assignment {
             
         }
         
+       //Part Two
+       //Store sport member sytem
+       String name = JOptionPane.showInputDialog("PLease Enter Name of sport member");
+       String surname = JOptionPane.showInputDialog("PLease Enter Surname of sport member");
+       String id = JOptionPane.showInputDialog("Please Enter ID of Sport Member");
+       String sport_name = JOptionPane.showInputDialog("Please Enter Name of Sport for the Member");
+       int age = Integer.parseInt(JOptionPane.showInputDialog("Enter Age of Sport Member"));
        
-        
+       //initialize the member
+       memberObj.assignValues(name, surname, id, sport_name, age);
+       
+       //display member details
+       memberObj.display();
+      
         
         
     }
